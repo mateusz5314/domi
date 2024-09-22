@@ -1,0 +1,37 @@
+SRD-05VDC-SL-C High voltage circuit (12V in my case, up to 250V and 10A):
+
+COM (Common) – Common relay input
+NO (Normally Open) – Connected to COM if coil active.
+NC (Normally Closed) – Connected to COM if coil inactive.
+
+NC -> Not connected
+COM -> Power '+'(Battery in my case)
+NO -> Engine '+'
+Engine '-' -> Power '-'
+
+=============================================
+
+SRD-05VDC-SL-C Low voltage circuit 5V:
+
+For the Raspberry Pi Pico W, the GPIO operates at 3.3V, so a transistor is required to control the relay.
+
+BC337 - NPN Transistor
+T_B - Base - BC337 middle leg, used to control the transistor.
+T_C - Collector - BC337 left leg (when viewed from the front), through which current flows to the load.
+T_E - Emitter - BC337 right leg, through which current flows from the load to ground.
+SRD_IN - SRD-05VDC-SL-C Pin is used to control the relay; connecting a logic signal (low state) activates the relay.
+SRD_VCC - SRD-05VDC-SL-C Pin provides power to the relay coil, requiring a voltage of 5V for operation.
+SRD_GND - SRD-05VDC-SL-C Pin is connected to the ground of the circuit, completing the power circuit for the relay.
+VBUS - Raspberry Pi Pico W voltage rail that provides 5V power from the USB connection, typically
+       used to power the board and any connected peripherals when plugged into a USB port.
+GND - Raspberry Pi Pico W GND
+R1K - Resistor 1000 Ohm
+GPIO - Any Raspberry Pi Pico W GPIO Pin set to output
+
+SRD_VCC -> VBUS
+SRD_GND -> GND
+SRD_IN -> T_C
+T_E -> GND
+T_B -> R1K -> GPIO (GP1 in my case)
+
+Whenever the GPIO is set to high, T_C connects to T_E, resulting in SRD_IN being in a low state.

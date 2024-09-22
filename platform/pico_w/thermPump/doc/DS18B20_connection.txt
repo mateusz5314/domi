@@ -1,0 +1,4 @@
+Black -> Ground
+Red -> 3V3
+Yellow (data)    -> GPIO (GP0 in my code)
+       (pull up) -> 4K7 resistor -> 3V3

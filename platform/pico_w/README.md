@@ -18,6 +18,6 @@ To remove a file from the Pico:
 
 To run a Python script on the Pico:
 * ampy --port /dev/ttyUSB0 run your_script.py
-  * add -n to skip waiting for answer, required if program has infinite loop
+  * add -n to skip waiting for answer, required if program has infinite loop without output
 
 Replace /dev/ttyUSB0 with the actual serial port of your Pico.
