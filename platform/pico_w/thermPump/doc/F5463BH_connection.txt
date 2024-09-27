@@ -1,0 +1,34 @@
+F5463BH pins:
+
+Looking at the display from front index starts from left
+TOP:
+1 - DIG 1 - R100 - GP13
+2 - A - GP2
+3 - F - GP3
+4 - DIG 2 - R100 - GP14
+5 - DIG 3 - R100 - GP11
+6 - B - GP4
+7 - DDOT_GND - GND
+
+BOTTOM:
+1 - E - GP5
+2 - D - GP6
+3 - DP - GP7
+4 - C - GP8
+5 - G - GP9
+6 - DIG 4 - R100 - GP12
+7 - DDOT - R2K - GP10
+
+Segments:
+A - Horizontal top
+B - Vertical top right
+C - Vertical bottom right
+D - Horizontal bottom
+E - Vertical bottom left
+F - Vertical top left
+G - Horizontal middle
+DP - Digit Dot
+DDOT - Double dot in the middle
+
+Segments low to activate.
+Segment can be activated only if digit is powered (DIGX high)

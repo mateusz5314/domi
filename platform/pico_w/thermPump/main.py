@@ -1,29 +1,46 @@
+import asyncio
 from machine import Pin
 
 import temp_sensor
+import display
 
-if __name__ == '__main__':
+async def main():
     print("ThermPump software")
-    CHECK_DELAY_S = 5
+    CHECK_DELAY_S = 1
     OB_LED = Pin("LED", Pin.OUT)
     WATER_TEMP_PIN = Pin.board.GP0
-    MOTOR_ENABLER = Pin(Pin.board.GP1, Pin.OUT)
+    MOTOR_ENABLER = Pin(Pin.board.GP1, Pin.OUT, Pin.PULL_UP)
 
-    water_temp_sensor = temp_sensor.DS18B20(pin_num=WATER_TEMP_PIN)
+    try:
+        water_temp_sensor = temp_sensor.DS18B20(pin_num=WATER_TEMP_PIN)
+    except Exception as e:
+        print("Could not find DS18B20 device.")
+        return
+    temp_display = display.F5463BH(Pin.board.GP2, Pin.board.GP4, Pin.board.GP8, Pin.board.GP6,
+                                   Pin.board.GP5, Pin.board.GP3, Pin.board.GP9, Pin.board.GP7,
+                                   Pin.board.GP10, Pin.board.GP13, Pin.board.GP14,
+                                   Pin.board.GP11, Pin.board.GP12)
 
     OB_LED.on()
     while True:
-        # Get temperature
         try:
-            water_temp = water_temp_sensor.get_temperature()
+            water_temp = await water_temp_sensor.get_temperature()
 
             if water_temp > 28:
                 MOTOR_ENABLER.high()
             else:
                 MOTOR_ENABLER.low()
+            await asyncio.sleep(0.0005)
             print(f"Water temperature {water_temp}\u00B0C, Motor: {MOTOR_ENABLER.value()}")
+            formatted_number = f"{water_temp:02.2f}"
+            await temp_display.write(int(formatted_number[0]), int(formatted_number[1]),
+                                     int(formatted_number[3]), int(formatted_number[4]), dot2=True)
+            await asyncio.sleep(CHECK_DELAY_S)
         except KeyboardInterrupt:
             break
 
     OB_LED.off()
     print("Closed.")
+
+if __name__ == '__main__':
+    asyncio.run(main())
