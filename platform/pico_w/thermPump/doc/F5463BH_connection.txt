@@ -2,22 +2,22 @@ F5463BH pins:
 
 Looking at the display from front index starts from left
 TOP:
-1 - DIG 1 - R100 - GP13
-2 - A - GP2
-3 - F - GP3
-4 - DIG 2 - R100 - GP14
-5 - DIG 3 - R100 - GP11
-6 - B - GP4
-7 - DDOT_GND - GND
+1 - DIG 1 - R100 - GP21
+2 - A - GP20
+3 - F - GP19
+4 - DIG 2 - R100 - GP18
+5 - DIG 3 - R100 - GP17
+6 - B - GP16
+7 - DDOT_GND - GND(23)
 
 BOTTOM:
-1 - E - GP5
-2 - D - GP6
-3 - DP - GP7
-4 - C - GP8
-5 - G - GP9
-6 - DIG 4 - R100 - GP12
-7 - DDOT - R2K - GP10
+1 - E - GP9
+2 - D - GP10
+3 - DP - GP11
+4 - C - GP12
+5 - G - GP13
+6 - DIG 4 - R100 - GP14
+7 - DDOT - R2K - GP15
 
 Segments:
 A - Horizontal top

@@ -16,10 +16,10 @@ async def main():
     except Exception as e:
         print("Could not find DS18B20 device.")
         return
-    temp_display = display.F5463BH(Pin.board.GP2, Pin.board.GP4, Pin.board.GP8, Pin.board.GP6,
-                                   Pin.board.GP5, Pin.board.GP3, Pin.board.GP9, Pin.board.GP7,
-                                   Pin.board.GP10, Pin.board.GP13, Pin.board.GP14,
-                                   Pin.board.GP11, Pin.board.GP12)
+    temp_display = display.F5463BH(Pin.board.GP20, Pin.board.GP16, Pin.board.GP12, Pin.board.GP10,
+                                   Pin.board.GP9, Pin.board.GP19, Pin.board.GP13, Pin.board.GP11,
+                                   Pin.board.GP15, Pin.board.GP21, Pin.board.GP18,
+                                   Pin.board.GP17, Pin.board.GP14)
 
     OB_LED.on()
     while True:
