@@ -6,6 +6,8 @@ import display
 
 async def main():
     print("ThermPump software")
+    MOTOR_ENABLE_THR = 28
+    MOTOR_DISABLE_THR = 27
     CHECK_DELAY_S = 1
     OB_LED = Pin("LED", Pin.OUT)
     WATER_TEMP_PIN = Pin.board.GP0
@@ -26,9 +28,9 @@ async def main():
         try:
             water_temp = await water_temp_sensor.get_temperature()
 
-            if water_temp > 28:
+            if water_temp > MOTOR_ENABLE_THR:
                 MOTOR_ENABLER.high()
-            else:
+            elif water_temp < MOTOR_DISABLE_THR:
                 MOTOR_ENABLER.low()
             await asyncio.sleep(0.0005)
             print(f"Water temperature {water_temp}\u00B0C, Motor: {MOTOR_ENABLER.value()}")
