@@ -16,7 +16,7 @@ WORKDIR $HOME
 # Install required packages
 RUN echo "Installing packages" && \
     sudo apt-get update && \
-    sudo apt-get -y install bash-completion build-essential git python3.12 wget nano
+    sudo apt-get -y install bash-completion build-essential git python3.12 wget nano minicom
 
 # Install & setup anaconda
 RUN echo "Setting up anaconda environment" && \
